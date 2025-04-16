@@ -1,7 +1,7 @@
 name: tech_taste
 description: "Imersão mobile da Alura"
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -31,5 +31,5 @@ flutter:
     - assets/banners/
     - assets/categories/
     - assets/dishes/
-    - assets/others/
+    - assets/logo/
     - assets/restaurants/
