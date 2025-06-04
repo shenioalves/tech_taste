@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tech_taste/app/initial_screen.dart';
-
-void main() {
+import 'package:provider/provider.dart';
+import 'package:tech_taste/app/constants/app_theme.dart';
+import 'package:tech_taste/app/pages/home_screen.dart';
+import 'app/pages/splash.dart';
+import 'app/providers/app_provaider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -10,13 +19,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (context) => AppProvider(),
+      child: MaterialApp(
+        theme: AppTheme.appTheme,
+        debugShowCheckedModeBanner: false,
+        title: 'Tech Taste',
+        initialRoute: '/splash',
+        routes: {
+          '/splash': (_) => SplashScreen(),
+          '/home': (_) => const HomeScreen(),
+        },
       ),
-      home: const InitialScreen(),
     );
-  
+  }
 }
